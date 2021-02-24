@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+  <RecipeDef Name="SNS_Recipe_GenIII_Ammo_Base" ParentName="AmmoRecipeBase" Abstract="True">
+  	<researchPrerequisite>SNS_Research_VI_weaponry</researchPrerequisite>
+    <recipeUsers Inherit="False">
+      <li>Table_SNS_CosmicDrawer</li>
+    </recipeUsers>
+  </RecipeDef>
+
+  <!-- UNIVERSAL AMMO -->
+  
+  <!-- AmmoSets. -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenIII_Pistol</defName>
+    <label>eternal weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenIII>SNS_Bullet_GenIII_Pistol</SNS_Ammo_GenIII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenIII_Rifle</defName>
+    <label>eternal weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenIII>SNS_Bullet_GenIII_Rifle</SNS_Ammo_GenIII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenIII_Shotgun</defName>
+    <label>eternal weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenIII>SNS_Bullet_GenIII_Shotgun</SNS_Ammo_GenIII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenIII_Sniper</defName>
+    <label>eternal weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenIII>SNS_Bullet_GenIII_Sniper</SNS_Ammo_GenIII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- Ammo Item. -->
+  
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_GenIII_SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <techLevel>Archotech</techLevel>
+	<smallVolume>true</smallVolume>
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+    </statBases>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_GenIII_SmallAmmoBase">
+    <defName>SNS_Ammo_GenIII</defName>
+    <label>generation omega eternal weapon charge</label>
+	<description>A capacitor cell filled with unordered Eternium, designed for Generation-3 Eternal weaponry. While it is cheap and fast to make, the Eternium within is highly unstable and will cease to exist entirely of containment is broken; nothing can be extracted from it.\n\nStack limit: 5,000</description>
+    <statBases>
+      <Mass>0.002</Mass>
+      <Bulk>0.001</Bulk>
+    </statBases>
+	<thingCategories>
+      <li>SNS_ThingCat_Ammo_GenIII</li>
+    </thingCategories>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_FabricationBench</li>
+    </tradeTags>
+    <stackLimit>5000</stackLimit>
+    <graphicData>
+      <texPath>Things/Ammo/SNS/Gen3/Gen3</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+
+  <!-- Recipe -->
+
+  <RecipeDef ParentName="SNS_Recipe_GenIII_Ammo_Base">
+    <defName>MakeSNS_Ammo_GenIII</defName>
+    <label>make generation omega eternal weapon charge x50</label>
+    <description>Create 50 shots worth of omega-generation eternal weapon charge in a convenient capacitor.</description>
+    <jobString>Manufacturing eternal weapon charge capacitors.</jobString>
+	<recipeUsers Inherit="False">
+		<li>Table_SNS_Unobtainer</li>
+	</recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>SNS_CosmicAlloy</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>SNS_CosmicAlloy</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <SNS_Ammo_GenIII>50</SNS_Ammo_GenIII>
+    </products>
+    <workAmount>1200</workAmount>
+  </RecipeDef>
+
+
+  <!-- Pistol Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenIII_Pistol" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen3/Bullet_Pistol</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>200</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenIII_Pistol">
+    <defName>SNS_Bullet_GenIII_Pistol</defName>
+    <label>eternal pistol bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>13</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>13</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>300</armorPenetrationSharp>
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Rifle Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenIII_Rifle" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen3/Bullet_Rifle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>140</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenIII_Rifle">
+    <defName>SNS_Bullet_GenIII_Rifle</defName>
+    <label>eternal rifle bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>4</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>13</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>150</armorPenetrationSharp>
+      <armorPenetrationBlunt>150</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Shotgun Projectiles -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenIII_Shotgun" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen3/Bullet_Shotgun_Single</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>100</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenIII_Shotgun">
+    <defName>SNS_Bullet_GenIII_Shotgun</defName>
+    <label>eternal shotgun projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <pelletCount>15</pelletCount>
+      <spreadMult>2</spreadMult>
+      <damageAmountBase>3</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>14</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>800</armorPenetrationSharp>
+      <armorPenetrationBlunt>800</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Sniper Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenIII_Sniper" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen3/Bullet_Sniper</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>250</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenIII_Sniper">
+    <defName>SNS_Bullet_GenIII_Sniper</defName>
+    <label>eternal sniper bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>90</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>30</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>500</armorPenetrationSharp>
+      <armorPenetrationBlunt>500</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+</Defs>

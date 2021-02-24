@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+  <RecipeDef Name="SNS_Recipe_GenII_Ammo_Base" ParentName="AmmoRecipeBase" Abstract="True">
+  	<researchPrerequisite>SNS_Research_III_weaponry</researchPrerequisite>
+    <recipeUsers Inherit="False">
+      <li>Table_SNS_CosmicDrawer</li>
+    </recipeUsers>
+  </RecipeDef>
+
+  <!-- UNIVERSAL AMMO -->
+  
+  <!-- AmmoSets. -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenII_Pistol</defName>
+    <label>cosmic weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenII>SNS_Bullet_GenII_Pistol</SNS_Ammo_GenII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenII_Rifle</defName>
+    <label>cosmic weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenII>SNS_Bullet_GenII_Rifle</SNS_Ammo_GenII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenII_Shotgun</defName>
+    <label>cosmic weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenII>SNS_Bullet_GenII_Shotgun</SNS_Ammo_GenII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenII_Sniper</defName>
+    <label>cosmic weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenII>SNS_Bullet_GenII_Sniper</SNS_Ammo_GenII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- Ammo Item. -->
+  
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_GenII_SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <techLevel>Archotech</techLevel>
+	<smallVolume>true</smallVolume>
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+    </statBases>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_GenII_SmallAmmoBase">
+    <defName>SNS_Ammo_GenII</defName>
+    <label>generation 2 cosmic weapon charge</label>
+	<description>A capacitor cell filled with chaotic, unfiltered, and slightly unstable Cosmic Matter, designed for Generation-2 Cosmic weaponry. While it is cheap and fast to make, the Cosmic Matter within cannot be extracted once the capacitor has been sealed due to the unstable nature of the contained Cosmic Matter.\n\nStack limit: 5,000</description>
+    <statBases>
+      <Mass>0.002</Mass>
+      <Bulk>0.001</Bulk>
+    </statBases>
+	<thingCategories>
+      <li>SNS_ThingCat_Ammo_GenII</li>
+    </thingCategories>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_FabricationBench</li>
+    </tradeTags>
+    <stackLimit>5000</stackLimit>
+    <graphicData>
+      <texPath>Things/Ammo/SNS/Gen2/Gen2</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+
+  <!-- Recipe -->
+
+  <RecipeDef ParentName="SNS_Recipe_GenII_Ammo_Base">
+    <defName>MakeSNS_Ammo_GenII</defName>
+    <label>make generation 2 cosmic weapon charge x50</label>
+    <description>Create 50 shots worth of second-generation cosmic weapon charge in a convenient capacitor.</description>
+    <jobString>Manufacturing cosmic weapon charge capacitors.</jobString>
+	<recipeUsers Inherit="False">
+		<li>Table_SNS_Unobtainer</li>
+	</recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>SNS_Unobtainium</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>SNS_Unobtainium</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <SNS_Ammo_GenII>50</SNS_Ammo_GenII>
+    </products>
+    <workAmount>600</workAmount>
+  </RecipeDef>
+
+
+  <!-- Pistol Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenII_Pistol" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen2/Bullet_Pistol</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>150</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenII_Pistol">
+    <defName>SNS_Bullet_GenII_Pistol</defName>
+    <label>cosmic pistol bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>8</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>8</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>75</armorPenetrationSharp>
+      <armorPenetrationBlunt>75</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Rifle Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenII_Rifle" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen2/Bullet_Rifle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>100</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenII_Rifle">
+    <defName>SNS_Bullet_GenII_Rifle</defName>
+    <label>cosmic rifle bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>3</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>7</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>40</armorPenetrationSharp>
+      <armorPenetrationBlunt>40</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Shotgun Projectiles -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenII_Shotgun" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen2/Bullet_Shotgun_Single</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>70</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenII_Shotgun">
+    <defName>SNS_Bullet_GenII_Shotgun</defName>
+    <label>cosmic shotgun projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <pelletCount>11</pelletCount>
+      <spreadMult>3</spreadMult>
+      <damageAmountBase>2</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>9</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>200</armorPenetrationSharp>
+      <armorPenetrationBlunt>200</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Sniper Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenII_Sniper" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen2/Bullet_Sniper</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>150</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenII_Sniper">
+    <defName>SNS_Bullet_GenII_Sniper</defName>
+    <label>cosmic sniper bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>60</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>20</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>150</armorPenetrationSharp>
+      <armorPenetrationBlunt>150</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+</Defs>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- ==================== AmmoSet ========================== -->
+
+    <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_SNS_Ammo_GenII_CosmicLance</defName>
+        <label>cosmic lance charge</label>
+        <ammoTypes>
+            <SNS_Ammo_GenII_CosmicLance>SNS_CE_Bullet_CosmicLance</SNS_Ammo_GenII_CosmicLance>
+        </ammoTypes>
+    </CombatExtended.AmmoSetDef>
+
+    <!-- ==================== Ammo ========================== -->
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_GenII_SmallAmmoBase">
+        <defName>SNS_Ammo_GenII_CosmicLance</defName>
+        <label>cosmic lance charge cell</label>
+        <description>A container cell filled with pure, high-energy Cosmic Matter. The Cosmic Matter contained inside is just powerful enough to fuel the Handheld Cosmic Lance. The Cosmic Matter within is far too powerful for standard Generation 2 Cosmic weaponry, and would overload and destroy any weaponry not made specifically for cosmic lance charge cells.</description>
+        <statBases>
+            <Mass>0.005</Mass>
+            <Bulk>0.009</Bulk>
+        </statBases>
+		<thingCategories>
+            <li>SNS_ThingCat_Ammo_GenII</li>
+        </thingCategories>
+		<tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_FabricationBench</li>
+        </tradeTags>
+        <stackLimit>10</stackLimit>
+		<graphicData>
+            <texPath>Things/Ammo/SNS/Gen2/Lance</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <ammoClass>Charged</ammoClass>
+    </ThingDef>
+
+
+    <!-- ================== Projectiles ================== -->
+
+    <ThingDef Class="CombatExtended.AmmoDef" Name="BaseCosmicBulletLance" ParentName="BaseBullet" Abstract="True">
+        <graphicData>
+            <texPath>Things/Projectile/SNS/Gen2/Bullet_Lance</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <speed>250</speed>
+        </projectile>
+    </ThingDef>
+
+    <!-- normal charged bullets -->
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCosmicBulletLance">
+        <defName>SNS_CE_Bullet_CosmicLance</defName>
+        <label>cosmic lance projectile</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+            <damageAmountBase>1000</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        </projectile>
+    </ThingDef>
+
+    <!-- ==================== Recipes ========================== -->
+
+    <RecipeDef ParentName="SNS_Recipe_GenII_Ammo_Base">
+        <defName>MakeSNS_Ammo_GenII_CosmicLance</defName>
+        <label>make cosmic lance charge cell x10</label>
+        <description>Craft ten large capacitors filled with pure Cosmic Matter for use with the Handheld Cosmic Lance.\n\nStack limit: 10</description>
+        <jobString>manufacturing cosmic lance charge cells.</jobString>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SNS_CosmicAlloy</li>
+                    </thingDefs>
+                </filter>
+                <count>2</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SNS_CosmicMatter</li>
+                    </thingDefs>
+                </filter>
+                <count>10</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>SNS_CosmicAlloy</li>
+                <li>SNS_CosmicMatter</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <SNS_Ammo_GenII_CosmicLance>10</SNS_Ammo_GenII_CosmicLance>
+        </products>
+        <workAmount>300</workAmount>
+    </RecipeDef>
+</Defs>

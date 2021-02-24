@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- ==================== AmmoSet ========================== -->
+
+    <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_SNS_Ammo_Pinnacle_Turret</defName>
+        <label>fabrical charge</label>
+        <ammoTypes>
+            <SNS_Ammo_GenIV>SNS_CE_Gun_Turret_Bullet_Pinnacle</SNS_Ammo_GenIV>
+        </ammoTypes>
+    </CombatExtended.AmmoSetDef>
+
+
+    <!-- ================== Projectiles ================== -->
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBulletBeholder">
+        <defName>SNS_CE_Gun_Turret_Bullet_Pinnacle</defName>
+        <label>Stable Matter projectile</label>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE" Inherit="False">
+		    <speed>100</speed>
+		    <gravityFactor>25</gravityFactor>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<flyOverhead>true</flyOverhead>
+			<damageDef>Bullet</damageDef>
+            <damageAmountBase>1000</damageAmountBase>
+            <armorPenetrationSharp>82000</armorPenetrationSharp>
+            <armorPenetrationBlunt>82000</armorPenetrationBlunt>
+        </projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>1250</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>15</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
+    </ThingDef>
+</Defs>

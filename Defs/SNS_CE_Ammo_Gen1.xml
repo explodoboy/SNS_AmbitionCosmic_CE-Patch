@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+  <RecipeDef Name="SNS_Recipe_GenI_Ammo_Base" ParentName="AmmoRecipeBase" Abstract="True">
+  	<researchPrerequisite>SNS_Research_II_wep</researchPrerequisite>
+    <recipeUsers Inherit="False">
+      <li>Table_SNS_Unobtainer</li>
+    </recipeUsers>
+  </RecipeDef>
+
+  <!-- UNIVERSAL AMMO -->
+  
+  <!-- AmmoSets. -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenI_Pistol</defName>
+    <label>stellar weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenI>SNS_Bullet_GenI_Pistol</SNS_Ammo_GenI>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenI_Rifle</defName>
+    <label>stellar weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenI>SNS_Bullet_GenI_Rifle</SNS_Ammo_GenI>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenI_Shotgun</defName>
+    <label>stellar weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenI>SNS_Bullet_GenI_Shotgun</SNS_Ammo_GenI>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenI_Sniper</defName>
+    <label>stellar weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenI>SNS_Bullet_GenI_Sniper</SNS_Ammo_GenI>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- Ammo Item. -->
+  
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_GenI_SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <techLevel>Ultra</techLevel>
+	<smallVolume>true</smallVolume>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_GenI_SmallAmmoBase">
+    <defName>SNS_Ammo_GenI</defName>
+    <label>generation 1 stellar weapon charge</label>
+	<description>A capacitor cell filled with low-purity, low-energy Cosmic Matter, designed for Generation-1 Stellar weaponry. Extremely cheap to make and highly expendable, but worse than useless without the weapon it was made for. Once charged, the energy cannot be extracted, as the energy within will simply dissipate when containment is broken.\n\nStack limit: 5,000</description>
+    <statBases>
+      <Mass>0.002</Mass>
+      <Bulk>0.001</Bulk>
+    </statBases>
+	<thingCategories>
+      <li>SNS_ThingCat_Ammo_GenI</li>
+    </thingCategories>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_FabricationBench</li>
+    </tradeTags>
+    <stackLimit>5000</stackLimit>
+    <graphicData>
+      <texPath>Things/Ammo/SNS/Gen1/Gen1</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+
+  <!-- Recipe -->
+
+  <RecipeDef ParentName="SNS_Recipe_GenI_Ammo_Base">
+    <defName>MakeSNS_Ammo_GenI</defName>
+    <label>make generation 1 stellar weapon charge x50</label>
+    <description>Create 50 shots worth of stellar weapon charge in a convenient capacitor.</description>
+    <jobString>Manufacturing stellar weapon charge capacitors.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <SNS_Ammo_GenI>50</SNS_Ammo_GenI>
+    </products>
+    <workAmount>300</workAmount>
+  </RecipeDef>
+
+
+  <!-- Pistol Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenI_Pistol" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen1/Bullet_Pistol</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>100</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenI_Pistol">
+    <defName>SNS_Bullet_GenI_Pistol</defName>
+    <label>stellar pistol projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>6</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>6</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>25</armorPenetrationSharp>
+      <armorPenetrationBlunt>25</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Rifle Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenI_Rifle" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen1/Bullet_Rifle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>80</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenI_Rifle">
+    <defName>SNS_Bullet_GenI_Rifle</defName>
+    <label>stellar rifle projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>2</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>6</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>15</armorPenetrationSharp>
+      <armorPenetrationBlunt>15</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Shotgun Projectiles -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenI_Shotgun" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen1/Bullet_Shotgun_Single</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>50</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenI_Shotgun">
+    <defName>SNS_Bullet_GenI_Shotgun</defName>
+    <label>stellar shotgun projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <pelletCount>8</pelletCount>
+      <spreadMult>4</spreadMult>
+      <damageAmountBase>1</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>9</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>75</armorPenetrationSharp>
+      <armorPenetrationBlunt>75</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Sniper Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_GenI_Sniper" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen1/Bullet_Sniper</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>150</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenI_Sniper">
+    <defName>SNS_Bullet_GenI_Sniper</defName>
+    <label>stellar sniper projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>45</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>15</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>50</armorPenetrationSharp>
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+</Defs>

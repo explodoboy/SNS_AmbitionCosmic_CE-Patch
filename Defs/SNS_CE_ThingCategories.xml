@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+      <defName>SNS_ThingCat_Ammo_Parent</defName>
+      <label>SNS: AOTC</label>
+      <parent>Ammo</parent>
+      <iconPath>UI/Icons/ThingCategories/AmmoAdvanced</iconPath>
+    </ThingCategoryDef>
+
+    <ThingCategoryDef>
+      <defName>SNS_ThingCat_Ammo_GenI</defName>
+      <label>stellar/gen 1</label>
+      <parent>SNS_ThingCat_Ammo_Parent</parent>
+      <iconPath>UI/Icons/ThingCategories/AmmoAdvanced</iconPath>
+    </ThingCategoryDef>
+
+    <ThingCategoryDef>
+      <defName>SNS_ThingCat_Ammo_GenII</defName>
+      <label>cosmic/gen 2</label>
+      <parent>SNS_ThingCat_Ammo_Parent</parent>
+      <iconPath>UI/Icons/ThingCategories/AmmoAdvanced</iconPath>
+    </ThingCategoryDef>
+
+    <ThingCategoryDef>
+      <defName>SNS_ThingCat_Ammo_GenIII</defName>
+      <label>enigmatic/eternal/gen omega</label>
+      <parent>SNS_ThingCat_Ammo_Parent</parent>
+      <iconPath>UI/Icons/ThingCategories/AmmoAdvanced</iconPath>
+    </ThingCategoryDef>
+  
+</Defs>

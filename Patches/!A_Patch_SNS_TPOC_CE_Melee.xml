@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This code has been provided by SGl0bGVy, edited by explodoboy for official use. -->
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationFindMod">
+        <mods>
+          <li>SNS AOTC: True Pinnacle of Creation</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+          <operations>
+            
+            <li Class="PatchOperationReplace">
+              <xpath>Defs/ThingDef[defName="SNS_RecursionMelee"]/tools</xpath>
+              <value>
+                <tools>
+                  <li Class="CombatExtended.ToolCE">
+                    <label>temporal blade</label>
+                    <capacities>
+                      <li>Cut</li>
+                    </capacities>
+                    <power>1000</power>
+                    <cooldownTime>0.01</cooldownTime>
+                    <armorPenetrationBlunt>100000</armorPenetrationBlunt>
+                    <armorPenetrationSharp>100000</armorPenetrationSharp>
+                    <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                  </li>
+                  <li Class="CombatExtended.ToolCE">
+                    <label>temporal blade</label>
+                    <capacities>
+                      <li>Stab</li>
+                    </capacities>
+                    <power>250</power>
+                    <cooldownTime>0.01</cooldownTime>
+                    <armorPenetrationBlunt>100000</armorPenetrationBlunt>
+                    <armorPenetrationSharp>100000</armorPenetrationSharp>
+                    <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                  </li>
+                </tools>
+              </value>
+	         </li>
+
+           <!-- Add tags -->
+
+            <li Class="PatchOperationSequence">
+              <success>Always</success>
+              <operations>
+                <li Class="PatchOperationTest">
+                  <xpath>Defs/ThingDef[defName="SNS_RecursionMelee"]/weaponTags</xpath>
+                  <success>Invert</success>
+                </li>
+                <li Class="PatchOperationAdd">
+                  <xpath>Defs/ThingDef[defName="SNS_RecursionMelee"]</xpath>
+                  <value>
+                    <weaponTags />
+                  </value>
+                </li>
+              </operations>
+            </li>
+
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="SNS_RecursionMelee"]/weaponTags</xpath>
+              <value>
+                <li>CE_Sidearm_Melee</li>
+                <li>CE_OneHandedWeapon</li>
+              </value>
+            </li>
+            
+          </operations>
+        </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

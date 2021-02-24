@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This code has been provided by SGl0bGVy, edited by explodoboy for official use. -->
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationFindMod">
+        <mods>
+          <li>SNS AOTC: True Pinnacle of Creation</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+          <operations>
+            
+            <!-- TERMINUS -->
+          <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>SNS_TerminusGun</defName>
+
+            <statBases>
+              <WorkToMake>15000</WorkToMake>
+              <MarketValue>5000000</MarketValue> <!-- It's really only set this high to prevent pawns from randomly spawning with this, not that it should ever happen. -->
+              <DeteriorationRate>0</DeteriorationRate>
+              <Flammability>0.0</Flammability>
+              <SightsEfficiency>500</SightsEfficiency>
+              <ShotSpread>0.03</ShotSpread>
+              <SwayFactor>0.01</SwayFactor>
+              <Bulk>1.25</Bulk>
+              <Mass>2.5</Mass>
+              <RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+              <Beauty>250</Beauty>
+            </statBases>
+
+            <Properties>
+              <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+              <requireLineOfSight>false</requireLineOfSight>
+              <hasStandardCommand>true</hasStandardCommand>
+              <defaultProjectile>SNS_CE_Bullet_Terminus</defaultProjectile>
+              <burstShotCount>30</burstShotCount>
+              <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+              <warmupTime>0.1</warmupTime>
+              <range>250</range>
+              <soundCast>Shot_ChargeRifle</soundCast>
+              <soundCastTail>GunTail_Medium</soundCastTail>
+              <muzzleFlashScale>10</muzzleFlashScale>
+            </Properties>
+
+            <AmmoUser>
+              <magazineSize>5000</magazineSize>
+              <reloadTime>5</reloadTime>
+              <ammoSet>AmmoSet_SNS_Ammo_Terminus</ammoSet>
+            </AmmoUser>
+
+            <FireModes>
+              <aiAimMode>AimedShot</aiAimMode>
+            </FireModes>
+
+            <weaponTags>
+              <li>CE_TwoHandedWeapon</li>
+              <li>CE_Sidearm</li>
+            </weaponTags>
+          </li>
+
+          <!-- BEHOLDER -->
+          <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>SNS_BeholderGun</defName>
+
+            <statBases>
+              <WorkToMake>15000</WorkToMake>
+              <MarketValue>5000000</MarketValue> <!-- It's really only set this high to prevent pawns from randomly spawning with this, not that it should ever happen. -->
+              <DeteriorationRate>0</DeteriorationRate>
+              <Flammability>0.0</Flammability>
+              <SightsEfficiency>500</SightsEfficiency>
+              <ShotSpread>0.01</ShotSpread>
+              <SwayFactor>0.01</SwayFactor>
+              <Bulk>1.25</Bulk>
+              <Mass>2.5</Mass>
+              <RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+              <Beauty>250</Beauty>
+            </statBases>
+
+            <Properties>
+              <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+              <requireLineOfSight>false</requireLineOfSight>
+              <recoilAmount>0</recoilAmount>
+              <circularError>0.1</circularError>
+              <indirectFirePenalty>0.01</indirectFirePenalty>
+              <hasStandardCommand>true</hasStandardCommand>
+              <defaultProjectile>SNS_CE_Bullet_Beholder</defaultProjectile>
+              <burstShotCount>1</burstShotCount>
+              <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+              <warmupTime>0.1</warmupTime>
+              <range>250</range>
+              <soundCast>ChargeLance_Fire</soundCast>
+              <soundCastTail>GunTail_Heavy</soundCastTail>
+              <muzzleFlashScale>30</muzzleFlashScale>
+            </Properties>
+
+            <AmmoUser>
+              <magazineSize>5000</magazineSize>
+              <reloadTime>5</reloadTime>
+              <ammoSet>AmmoSet_SNS_Ammo_Beholder</ammoSet>
+            </AmmoUser>
+
+            <FireModes>
+              <aiAimMode>AimedShot</aiAimMode>
+            </FireModes>
+
+            <weaponTags>
+              <li>CE_TwoHandedWeapon</li>
+              <li>CE_Sidearm</li>
+            </weaponTags>
+          </li>
+            
+          </operations>
+        </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+
+<name>SNS AOTC: Combat Extended Patch</name>
+<author>explodoboy</author>
+<packageId>explodoboy.SNSAmbitionCosmic.CEPatch</packageId>
+<url>public.FutureGadgetLab.net</url>
+<supportedVersions><li>1.2</li></supportedVersions>
+<modDependencies>
+    <li>
+      <packageId>explodoboy.SNSAmbitionCosmic</packageId>
+      <displayName>Science Never Stops: Ambition of the Cosmic</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/1802857253</steamWorkshopUrl>
+    </li>
+    <li>
+      <packageId>CETeam.CombatExtended</packageId>
+      <displayName>Combat Extended</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/1631756268</steamWorkshopUrl>
+      <downloadUrl>https://github.com/CombatExtended-Continued/CombatExtended/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadBefore>
+    <li>explodoboy.SNSAOTCreskin</li>
+  </loadBefore>
+  <loadAfter>
+    <li>explodoboy.SNSAmbitionCosmic</li>
+    <li>explodoboy.SNSAmbitionCosmic.Gen4Addon</li>
+    <li>CETeam.CombatExtended</li>
+  </loadAfter>
+<description>Mod Version: 1.0 "Are you happy, now?"
+This mod is a comprehensive Combat Extended patch for Science Never Stops: Ambition of the Cosmic.
+</description>
+</ModMetaData>

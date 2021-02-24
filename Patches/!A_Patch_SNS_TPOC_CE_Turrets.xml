@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Combat Extended</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationFindMod">
+				<mods>
+					<li>SNS AOTC: True Pinnacle of Creation</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+						
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Pinnacle"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<!-- <li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Pinnacle"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Pinnacle"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Pinnacle"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li> -->
+						<!-- BOS doesn't need fuel but i'm leaving this here so i can re-use this code for the other turrets (im doing this one before the standard SNS turrets) -->
+						
+						<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName = "SNS_Gun_Turret_Pinnacle"]/comps</xpath>
+								<value>
+									<li Class="CombatExtended.CompProperties_Charges">
+									<chargeSpeeds>
+									<li>30</li>
+									<li>50</li>
+									<li>70</li>
+									<li>90</li>
+									</chargeSpeeds>
+									</li>
+								</value>
+							</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Pinnacle"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>0.1</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_Pinnacle</defName>
+						<Properties>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<requireLineOfSight>false</requireLineOfSight>
+						<circularError>0.1</circularError>
+						<indirectFirePenalty>0.01</indirectFirePenalty>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Pinnacle</defaultProjectile>
+						<warmupTime>0</warmupTime>
+						<range>150</range>
+							<minRange>20</minRange>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>20</muzzleFlashScale>
+						<!-- <recoilPattern>Mounted</recoilPattern> -->
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>5000</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_Pinnacle_Turret</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<!-- <li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Pinnacle"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Pinnacle"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Pinnacle"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li> -->
+						
+					</operations>
+				</match>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
+

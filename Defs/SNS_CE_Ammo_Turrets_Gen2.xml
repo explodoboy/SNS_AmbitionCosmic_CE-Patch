@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+  <!-- UNIVERSAL AMMO -->
+  
+  <!-- AmmoSets. -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenII_Turret_Rifle</defName>
+    <label>cosmic weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenII>SNS_CE_Gun_Turret_Bullet_Cosmic</SNS_Ammo_GenII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenII_Turret_OverdriveRifle</defName>
+    <label>cosmic weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenII>SNS_CE_Gun_Turret_Bullet_OverdriveCosmic</SNS_Ammo_GenII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenII_Turret_Sniper</defName>
+    <label>cosmic weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenII>SNS_CE_Gun_Turret_Bullet_OverdriveSniper</SNS_Ammo_GenII>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_SNS_Ammo_GenII_Turret_Lance</defName>
+        <label>cosmic lance charge</label>
+        <ammoTypes>
+            <SNS_Ammo_GenII_CosmicLance>SNS_CE_Gun_Turret_Bullet_Lance</SNS_Ammo_GenII_CosmicLance>
+        </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_SNS_Ammo_GenII_Turret_EnigmaticLance</defName>
+        <label>cosmic lance charge</label>
+        <ammoTypes>
+            <SNS_Ammo_GenII_CosmicLance>SNS_CE_Gun_Turret_Bullet_EnigmaticLance</SNS_Ammo_GenII_CosmicLance>
+        </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+
+  <!-- Gen2 Rifle Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenII_Rifle">
+    <defName>SNS_CE_Gun_Turret_Bullet_Cosmic</defName>
+    <label>cosmic turret projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>3</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>7</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>40</armorPenetrationSharp>
+      <armorPenetrationBlunt>40</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Gen3 (overdriven) Rifle Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenIII_Rifle">
+    <defName>SNS_CE_Gun_Turret_Bullet_OverdriveCosmic</defName>
+    <label>overcharged cosmic turret projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>4</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>13</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>150</armorPenetrationSharp>
+      <armorPenetrationBlunt>150</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Sniper Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenII_Sniper">
+    <defName>SNS_CE_Gun_Turret_Bullet_OverdriveSniper</defName>
+    <label>cosmic sniper bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>60</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>20</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>150</armorPenetrationSharp>
+      <armorPenetrationBlunt>150</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+    <!-- Lance Projectile -->
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCosmicBulletLance">
+        <defName>SNS_CE_Gun_Turret_Bullet_Lance</defName>
+        <label>cosmic lance projectile</label>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>50</damageAmountBase>
+            <secondaryDamage>
+                <li>
+                    <def>Burn</def>
+                    <amount>150</amount>
+                </li>
+            </secondaryDamage>
+            <armorPenetrationSharp>150</armorPenetrationSharp>
+            <armorPenetrationBlunt>150</armorPenetrationBlunt>
+        </projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>250</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
+    </ThingDef>
+
+
+    <!-- Enigmatic Lance Projectile -->
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCosmicBulletLance">
+        <defName>SNS_CE_Gun_Turret_Bullet_EnigmaticLance</defName>
+        <label>enigmatic lance projectile</label>
+        <graphicData>
+            <texPath>Things/Projectile/SNS/Gen3/Bullet_EXARCH</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>50</damageAmountBase>
+            <secondaryDamage>
+                <li>
+                    <def>Burn</def>
+                    <amount>150</amount>
+                </li>
+            </secondaryDamage>
+            <armorPenetrationSharp>150</armorPenetrationSharp>
+            <armorPenetrationBlunt>150</armorPenetrationBlunt>
+        </projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>250</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
+    </ThingDef>
+
+</Defs>

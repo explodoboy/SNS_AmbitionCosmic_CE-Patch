@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+  <!-- UNIVERSAL AMMO -->
+  
+  <!-- AmmoSets. -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenI_Turret_Rifle</defName>
+    <label>stellar weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenI>SNS_CE_Gun_Turret_Bullet_LightCosmic</SNS_Ammo_GenI>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_GenI_Turret_Sniper</defName>
+    <label>stellar weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenI>SNS_CE_Gun_Turret_Bullet_Sniper</SNS_Ammo_GenI>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+
+  <!-- Rifle Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenI_Rifle">
+    <defName>SNS_CE_Gun_Turret_Bullet_LightCosmic</defName>
+    <label>light stellar turret projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>2</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>6</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>15</armorPenetrationSharp>
+      <armorPenetrationBlunt>15</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- Sniper Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_GenI_Sniper">
+    <defName>SNS_CE_Gun_Turret_Bullet_Sniper</defName>
+    <label>catalyst turret projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>45</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Burn</def>
+          <amount>15</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>50</armorPenetrationSharp>
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+</Defs>

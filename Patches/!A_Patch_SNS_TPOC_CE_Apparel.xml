@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Combat Extended</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationFindMod">
+				<mods>
+					<li>SNS AOTC: True Pinnacle of Creation</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+						
+						<li Class="PatchOperationAdd"> <!-- FirstCycleHelmetBase -->
+							<xpath>Defs/ThingDef[@Name = "FirstCycleHelmetBase"]/statBases</xpath>
+							<value>
+								<Bulk>0.05</Bulk>
+								<WornBulk>0.02</WornBulk>
+							</value>
+						</li>
+
+					<!-- ========== Armor ========== -->
+
+						<li Class="PatchOperationAdd"> <!-- SNS_Apparel_FirstCycleArmor -->
+							<xpath>Defs/ThingDef[defName = "SNS_Apparel_FirstCycleArmor"]/statBases</xpath>
+							<value>
+								<Bulk>0.05</Bulk>
+								<WornBulk>0.02</WornBulk>
+							</value>
+						</li>
+						
+					</operations>
+				</match>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

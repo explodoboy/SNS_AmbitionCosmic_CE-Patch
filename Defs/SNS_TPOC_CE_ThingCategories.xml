@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>SNS_ThingCat_Ammo_GenIV</defName>
+      <label>pinnacle</label>
+      <parent>SNS_ThingCat_Ammo_Parent</parent>
+      <iconPath>UI/Icons/ThingCategories/AmmoAdvanced</iconPath>
+    </ThingCategoryDef>
+  
+</Defs>

@@ -1,0 +1,1421 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!--
+
+			NOTE: Turret order is in-sequence of their appearance in the SNS turret defs, starting from Tier1 and going to Tier5.
+	
+		Planned turrets (concepts, modified for CE):
+		
+		(GEN1) Light Stellar Turret: A portable turret that shoots like a stellar Rifle. It has a short cooldown period.
+		(GEN1) Perdition Light Stellar Turret: A portable turret that shoots slower than a stellar Rifle, but doesn't have a cooldown period.
+		
+		(GEN2) Cosmic Turret: A non-portable 2x2 turret that shoots like a Cosmic Rifle combined with a Minigun. It has a short cooldown period. 
+		(GEN2) Perdition Cosmic Turret: A non-portable 2x2 turret that shoots like a Cosmic Rifle. Slower than the Cosmic Turret but no cooldown period.
+		(NAME PATCH NEEDED) (GEN2.5) Overcharged Cosmic Turret: A non-portable 2x2 turret that shoots like a Cosmic Rifle combined with a Minigun. It has a short cooldown period. It shoots Gen3 projectiles.
+		(NAME PATCH NEEDED) (GEN2.5) Perdition Overcharged Cosmic Turret: A non-portable 2x2 turret that shoots like a Cosmic Rifle. Slower than the Cosmic Turret but no cooldown period. It shoots Gen3 projectiles.
+		
+		(GEN1) Catalyst Turret: A non-portable 2x2 turret that shoots Cosmic Sniper rounds at a good rate. It shoots 1 bullet and then has a short cooldown.
+		(GEN2) Overdrive Catalyst Turret: A non-portable 2x2 turret that rapidly shoots Cosmic Sniper rounds. It shoots 1 bullet at a time.
+		
+		(GEN2) Automated Lance: A non-portable 3x3 turret that shoots Cosmic Lance rounds. It has a (relatively) long cooldown and only shoots 1 bullet at a time.
+		(GEN2) Deep Storage Automated Lance: An Automated Lance with a high ammo capacity.
+		(GEN2) Overdrive Automated Lance: A non-portable 3x3 turret that shoots Cosmic Lance rounds relatively quickly. It shoots 1 bullet at a time. It needs extra Cosmic Matter to build.
+		(GEN2) Deep Storage Overdrive Automated Lance: A Perdition Automated Lance with a high ammo capacity.
+		(NAME PATCH NEEDED) (GEN2.5) Advanced Overdrive Automated Lance: A non-portable 3x3 turret that shoots Cosmic Lance rounds at a high speed. It has a high ammo capacity.
+		
+		(GEN2.9) Engimatic Lance: A non-portable 3x3 turret that shoots quickly. Highly volatile (won't explode, but highly dangerous)
+		
+		(GEN3) Automated EXARCH: A non-portable 3x3 turret that shoots EXARCH rounds.
+		(NAME PATCH NEEDED) (GEN3.5) Advanced Automated EXARCH: A non-portable 3x3 turret that shoots EXARCH rounds at an increased speed.
+		
+		(GEN4) Bastion of Stability: A non-portable 3x3 turret that shoots EXARCH rounds like a minigun, said rounds also explode. Also is basically a mortar.
+	
+	-->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Combat Extended</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationFindMod">
+				<mods>
+					<li>Science Never Stops: Ambition of the Cosmic</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+						
+						<!-- Light Stellar Turret -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_LightCosmic"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_LightCosmic"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_LightCosmic"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_LightCosmic"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_LightCosmic"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>1</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>SNS_Gun_Turret_LightCosmic</defName>
+							<Properties>
+								<recoilAmount>1</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>SNS_CE_Gun_Turret_Bullet_LightCosmic</defaultProjectile>
+								<warmupTime>1</warmupTime>
+								<range>40</range>
+								<burstShotCount>4</burstShotCount>
+								<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+								<soundCast>Shot_ChargeRifle</soundCast>
+								<soundCastTail>GunTail_Light</soundCastTail>
+								<muzzleFlashScale>10</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+								<targetParams>
+									<canTargetLocations>false</canTargetLocations>
+								</targetParams>
+							</Properties>
+							<AmmoUser>
+							<magazineSize>125</magazineSize>
+							<reloadTime>2.5</reloadTime>
+							<ammoSet>AmmoSet_SNS_Ammo_GenI_Turret_Rifle</ammoSet>
+							</AmmoUser>
+						</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+							<success>Always</success>
+							<operations>
+								<li Class="PatchOperationTest">
+								<xpath>Defs/ThingDef[defName="SNS_Turret_LightCosmic"]/tradeTags</xpath>
+								<success>Invert</success>
+								</li>
+								<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="SNS_Turret_LightCosmic"]</xpath>
+								<value>
+									<tradeTags />
+								</value>
+								</li>
+							</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_LightCosmic"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Perdition Light Stellar Turret -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLightCosmic"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLightCosmic"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLightCosmic"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLightCosmic"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLightCosmic"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>0.17</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>SNS_Gun_Turret_PerditionLightCosmic</defName>
+							<Properties>
+								<recoilAmount>1</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>SNS_CE_Gun_Turret_Bullet_LightCosmic</defaultProjectile>
+								<warmupTime>0.17</warmupTime>
+								<range>40</range>
+								<burstShotCount>1</burstShotCount>
+								<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+								<soundCast>Shot_ChargeRifle</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>10</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+								<targetParams>
+									<canTargetLocations>false</canTargetLocations>
+								</targetParams>
+							</Properties>
+							<AmmoUser>
+							<magazineSize>125</magazineSize>
+							<reloadTime>2.5</reloadTime>
+							<ammoSet>AmmoSet_SNS_Ammo_GenI_Turret_Rifle</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLightCosmic"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLightCosmic"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLightCosmic"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Cosmic Turret -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Cosmic"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Cosmic"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Cosmic"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Cosmic"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Cosmic"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>4</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_Cosmic</defName>
+						<Properties>
+							<recoilAmount>0.75</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Cosmic</defaultProjectile>
+							<warmupTime>4</warmupTime>
+							<range>50</range>
+							<burstShotCount>30</burstShotCount>
+							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+							<soundCast>Shot_ChargeRifle</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>750</magazineSize>
+						<reloadTime>8</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Rifle</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Cosmic"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Cosmic"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Cosmic"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Perdition Cosmic Turret -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionCosmic"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionCosmic"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionCosmic"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionCosmic"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionCosmic"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>0.2</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_PerditionCosmic</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Cosmic</defaultProjectile>
+							<warmupTime>0.2</warmupTime>
+							<range>50</range>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>Shot_ChargeRifle</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>750</magazineSize>
+						<reloadTime>8</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Rifle</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionCosmic"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionCosmic"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionCosmic"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Overcharged Cosmic Turret -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalCosmic"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalCosmic"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalCosmic"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalCosmic"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>4</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_EternalCosmic</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_OverdriveCosmic</defaultProjectile>
+							<warmupTime>4</warmupTime>
+							<range>50</range>
+							<burstShotCount>30</burstShotCount>
+							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+							<soundCast>Shot_ChargeRifle</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>1000</magazineSize>
+						<reloadTime>8</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_OverdriveRifle</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalCosmic"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalCosmic"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalCosmic"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Perdition Overcharged Cosmic Turret -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalPerditionCosmic"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalPerditionCosmic"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalPerditionCosmic"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalPerditionCosmic"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>0.2</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_EternalPerditionCosmic</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_OverdriveCosmic</defaultProjectile>
+							<warmupTime>0.2</warmupTime>
+							<range>50</range>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>Shot_ChargeRifle</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>1000</magazineSize>
+						<reloadTime>8</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_OverdriveRifle</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalPerditionCosmic"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalPerditionCosmic"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalPerditionCosmic"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Catalyst Turret -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Sniper"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Sniper"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Sniper"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Sniper"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>5</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_Sniper</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Sniper</defaultProjectile>
+							<warmupTime>5</warmupTime>
+							<range>70</range>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>13</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>24</magazineSize>
+						<reloadTime>1.5</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenI_Turret_Sniper</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Sniper"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Sniper"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Sniper"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Overdrive Catalyst Turret -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionSniper"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionSniper"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionSniper"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionSniper"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionSniper"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>1</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_PerditionSniper</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_OverdriveSniper</defaultProjectile>
+							<warmupTime>1</warmupTime>
+							<range>100</range>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>13</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>45</magazineSize>
+						<reloadTime>1</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Sniper</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionSniper"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionSniper"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionSniper"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Automated Lance -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Lance"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Lance"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Lance"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Lance"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Lance"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>7</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_Lance</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Lance</defaultProjectile>
+							<warmupTime>7</warmupTime> <!-- firerate buffed -->
+							<range>120</range>
+							<minRange>5</minRange>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>2</reloadTime>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Lance</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Lance"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Lance"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_Lance"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Deep Storage Automated Lance -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_HighStorageLance"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_HighStorageLance"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_HighStorageLance"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_HighStorageLance"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_HighStorageLance"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>7</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_HighStorageLance</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Lance</defaultProjectile>
+							<warmupTime>7</warmupTime>
+							<range>120</range>
+							<minRange>5</minRange>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>75</magazineSize>
+						<reloadTime>2</reloadTime>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Lance</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_HighStorageLance"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_HighStorageLance"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_HighStorageLance"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Overdrive Lance -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLance"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLance"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLance"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLance"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLance"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>2.5</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Turret_PerditionLance</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Lance</defaultProjectile>
+							<warmupTime>2.5</warmupTime> <!-- firerate buffed -->
+							<range>120</range>
+							<minRange>5</minRange>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>2</reloadTime>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Lance</ammoSet>
+						</AmmoUser>
+						</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLance"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLance"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionLance"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Deep Storage Overdrive Automated Lance -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionHighStorageLance"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionHighStorageLance"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionHighStorageLance"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionHighStorageLance"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionHighStorageLance"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>2.5</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_PerditionHighStorageLance</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Lance</defaultProjectile>
+							<warmupTime>2.5</warmupTime>
+							<range>120</range>
+							<minRange>5</minRange>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>75</magazineSize>
+						<reloadTime>2</reloadTime>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Lance</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionHighStorageLance"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionHighStorageLance"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_PerditionHighStorageLance"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- TEMPLATE -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalLance"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalLance"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalLance"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalLance"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>1</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_EternalLance</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Lance</defaultProjectile>
+							<warmupTime>1</warmupTime>
+							<range>120</range>
+							<minRange>5</minRange>
+							<burstShotCount>2</burstShotCount>
+							<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>100</magazineSize>
+						<reloadTime>0.25</reloadTime>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Lance</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalLance"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalLance"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalLance"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- TEMPLATE -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EnigmaticLance"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EnigmaticLance"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EnigmaticLance"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EnigmaticLance"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>12</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_EnigmaticLance</defName>
+						<Properties>
+							<recoilAmount>12</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Gun_Turret_Bullet_Lance</defaultProjectile>
+							<warmupTime>1</warmupTime>
+							<range>120</range>
+							<minRange>5</minRange>
+							<burstShotCount>2</burstShotCount>
+							<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>120</magazineSize>
+						<reloadTime>0.2</reloadTime>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenII_Turret_Lance</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EnigmaticLance"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EnigmaticLance"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EnigmaticLance"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Automated EXARCH -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EXARCH"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EXARCH"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EXARCH"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EXARCH"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EXARCH"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>0.5</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_EXARCH</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Bullet_EXARCH</defaultProjectile>
+							<warmupTime>0.5</warmupTime>
+							<range>250</range>
+							<minRange>7</minRange>
+							<burstShotCount>1</burstShotCount>
+							<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>100</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenIII_EXARCH</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EXARCH"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EXARCH"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EXARCH"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+
+						<!-- Advanced Automated EXARCH -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalEXARCH"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalEXARCH"]/statBases</xpath>
+							<value>
+								<AimingAccuracy>1</AimingAccuracy>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalEXARCH"]/statBases/ShootingAccuracyTurret</xpath>
+							<value>
+								<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalEXARCH"]/building/turretBurstCooldownTime</xpath>
+							<value>
+								<turretBurstCooldownTime>0.25</turretBurstCooldownTime>
+							</value>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>SNS_Gun_Turret_EternalEXARCH</defName>
+						<Properties>
+							<recoilAmount>1</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>SNS_CE_Bullet_EXARCH</defaultProjectile>
+							<warmupTime>0.25</warmupTime>
+							<range>250</range>
+							<minRange>7</minRange>
+							<burstShotCount>2</burstShotCount>
+							<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+							<soundCast>ChargeLance_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+							<targetParams>
+								<canTargetLocations>false</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+						<magazineSize>500</magazineSize>
+						<reloadTime>10</reloadTime>
+						<ammoSet>AmmoSet_SNS_Ammo_GenIII_EXARCH</ammoSet>
+						</AmmoUser>
+					</li>
+
+						<!-- Add trade tags -->
+
+						<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalEXARCH"]/tradeTags</xpath>
+							<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalEXARCH"]</xpath>
+							<value>
+								<tradeTags />
+							</value>
+							</li>
+						</operations>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="SNS_Turret_EternalEXARCH"]/tradeTags</xpath>
+							<value>
+								<li>CE_Turret</li>
+							</value>
+						</li>
+						
+					</operations>
+				</match>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
+

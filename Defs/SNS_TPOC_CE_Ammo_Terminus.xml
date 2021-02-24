@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+  <RecipeDef Name="SNS_Recipe_GenIV_Ammo_Base" ParentName="AmmoRecipeBase" Abstract="True">
+  	<researchPrerequisite>SNS_Research_VII</researchPrerequisite>
+  </RecipeDef>
+
+  <!-- UNIVERSAL AMMO -->
+  
+  <!-- AmmoSets. -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_SNS_Ammo_Terminus</defName>
+    <label>T.E.R.M.I.N.U.S weapon charge</label>
+    <ammoTypes>
+      <SNS_Ammo_GenIV>SNS_CE_Bullet_Terminus</SNS_Ammo_GenIV>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- Ammo Item. -->
+  
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_GenIV_SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <techLevel>Archotech</techLevel>
+	<smallVolume>true</smallVolume>
+	<useHitPoints>false</useHitPoints>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_GenIV_SmallAmmoBase">
+    <defName>SNS_Ammo_GenIV</defName>
+    <label>fabrical charge cell</label>
+	<description>A capacitor cell that utilises the natural rotation of the very fabric of reality to generate a near-endless amount of energy.\nIt's spiraling, all the way down.\n\nStack limit: 5,000</description>
+    <statBases>
+      <Mass>0.002</Mass>
+      <Bulk>0.001</Bulk>
+    </statBases>
+	<thingCategories>
+      <li>SNS_ThingCat_Ammo_GenIV</li>
+    </thingCategories>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_FabricationBench</li>
+    </tradeTags>
+    <stackLimit>5000</stackLimit>
+    <graphicData>
+      <texPath>Things/Ammo/SNS/Gen4/Pinnacle</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+
+  <!-- Recipe -->
+
+  <RecipeDef ParentName="SNS_PinnacleFabricator_Item">
+    <defName>MakeSNS_Ammo_GenIV</defName>
+    <label>make fabrical charge cells x5000</label>
+    <description>Create 5,000 shots worth of charge capacitors for pinnacle-grade weaponry.</description>
+    <jobString>Manufacturing fabrical weapon charge capacitors.</jobString>
+    <products>
+      <SNS_Ammo_GenIV>5000</SNS_Ammo_GenIV>
+    </products>
+  </RecipeDef>
+
+
+  <!-- Projectile -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SNS_Projectile_Terminus" ParentName="BaseBullet" Abstract="True">
+    <graphicData>
+      <texPath>Things/Projectile/SNS/Gen4/Bullet_Terminus</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>125</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_Projectile_Terminus">
+    <defName>SNS_CE_Bullet_Terminus</defName>
+    <label>T.E.R.M.I.N.U.S projectile</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>1000</damageAmountBase>
+      <pelletCount>3</pelletCount>
+      <spreadMult>34</spreadMult>
+      <armorPenetrationSharp>82000</armorPenetrationSharp>
+      <armorPenetrationBlunt>82000</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+</Defs>

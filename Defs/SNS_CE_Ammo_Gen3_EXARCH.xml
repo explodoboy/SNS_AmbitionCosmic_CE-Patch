@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- ==================== AmmoSet ========================== -->
+
+    <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_SNS_Ammo_GenIII_EXARCH</defName>
+        <label>EXARCH charge</label>
+        <ammoTypes>
+            <SNS_Ammo_GenIII_EXARCH>SNS_CE_Bullet_EXARCH</SNS_Ammo_GenIII_EXARCH>
+        </ammoTypes>
+    </CombatExtended.AmmoSetDef>
+
+    <!-- ==================== Ammo ========================== -->
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="SNS_GenIII_SmallAmmoBase">
+        <defName>SNS_Ammo_GenIII_EXARCH</defName>
+        <label>EXARCH charge cell</label>
+        <description>A container cell filled with pure, well-ordered Eternium. The Eternium contained within is far too ordered and stable to be used with standard Generation Omega weaponry, but is just perfect for use with the EXARCH.\n\nStack limit: 50</description>
+        <statBases>
+            <Mass>0.005</Mass>
+            <Bulk>0.009</Bulk>
+        </statBases>
+		<thingCategories>
+            <li>SNS_ThingCat_Ammo_GenIII</li>
+        </thingCategories>
+		<tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_FabricationBench</li>
+        </tradeTags>
+        <stackLimit>50</stackLimit>
+		<graphicData>
+            <texPath>Things/Ammo/SNS/Gen3/EXARCH</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <ammoClass>Charged</ammoClass>
+    </ThingDef>
+
+
+    <!-- ================== Projectiles ================== -->
+
+    <ThingDef Class="CombatExtended.AmmoDef" Name="BaseBulletEXARCH" ParentName="BaseBullet" Abstract="True">
+        <graphicData>
+            <texPath>Things/Projectile/SNS/Gen3/Bullet_EXARCH</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <speed>250</speed>
+        </projectile>
+    </ThingDef>
+
+    <!-- normal charged bullets -->
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBulletEXARCH">
+        <defName>SNS_CE_Bullet_EXARCH</defName>
+        <label>EXARCH projectile</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+            <damageAmountBase>5000</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        </projectile>
+    </ThingDef>
+
+    <!-- ==================== Recipes ========================== -->
+
+    <RecipeDef ParentName="SNS_Recipe_GenIII_Ammo_Base">
+        <defName>MakeSNS_Ammo_GenIII_EXARCH</defName>
+        <label>make EXARCH charge cell x50</label>
+        <description>Craft a large capacitor filled with pure Eternium for use with the EXARCH.</description>
+        <jobString>manufacturing EXARCH charge cells.</jobString>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SNS_CosmicAlloy</li>
+                    </thingDefs>
+                </filter>
+                <count>2</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SNS_Eternium</li>
+                    </thingDefs>
+                </filter>
+                <count>3</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>SNS_CosmicAlloy</li>
+                <li>SNS_Eternium</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <SNS_Ammo_GenIII_EXARCH>50</SNS_Ammo_GenIII_EXARCH>
+        </products>
+        <workAmount>900</workAmount>
+    </RecipeDef>
+</Defs>

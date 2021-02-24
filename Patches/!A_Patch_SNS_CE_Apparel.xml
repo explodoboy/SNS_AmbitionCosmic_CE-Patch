@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Combat Extended</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationFindMod">
+                    <mods>
+                        <li>Science Never Stops: Ambition of the Cosmic</li>
+                    </mods>
+                    <match Class="PatchOperationSequence">
+                        <operations>
+                            
+                        <!-- ========== SNS Gen1 Helmet ========== -->
+
+                        <li Class="PatchOperationAdd">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_CosmicAlloyHelmet"]/statBases</xpath>
+                            <value>
+                                <Bulk>0.3</Bulk>
+                                <WornBulk>0.5</WornBulk>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_CosmicAlloyHelmet"]/statBases/ArmorRating_Sharp</xpath>
+                            <value>
+                                <ArmorRating_Sharp>30</ArmorRating_Sharp>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_CosmicAlloyHelmet"]/statBases/ArmorRating_Blunt</xpath>
+                            <value>
+                                <ArmorRating_Blunt>50</ArmorRating_Blunt>
+                            </value>
+                        </li>
+
+                        <!-- ========== SNS Gen1 Armor ========== -->
+
+                        <li Class="PatchOperationAdd">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_CosmicAlloyPlateArmor"]/statBases</xpath>
+                            <value>
+                                <Bulk>1.2</Bulk>
+                                <WornBulk>2</WornBulk>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_CosmicAlloyPlateArmor"]/statBases/ArmorRating_Sharp</xpath>
+                            <value>
+                                <ArmorRating_Sharp>40</ArmorRating_Sharp>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_CosmicAlloyPlateArmor"]/statBases/ArmorRating_Blunt</xpath>
+                            <value>
+                                <ArmorRating_Blunt>60</ArmorRating_Blunt>
+                            </value>
+                        </li>
+
+                        <!-- ========== SNS Gen2 Helmet ========== -->
+
+                        <li Class="PatchOperationAdd">
+                            <xpath>Defs/ThingDef[@Name = "ApparelCosmicPowerArmorHelmetBase"]/statBases</xpath>
+                            <value>
+                                <Bulk>0.3</Bulk>
+                                <WornBulk>0.5</WornBulk>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[@Name = "ApparelCosmicPowerArmorHelmetBase"]/statBases/ArmorRating_Sharp</xpath>
+                            <value>
+                                <ArmorRating_Sharp>100</ArmorRating_Sharp>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[@Name = "ApparelCosmicPowerArmorHelmetBase"]/statBases/ArmorRating_Blunt</xpath>
+                            <value>
+                                <ArmorRating_Blunt>120</ArmorRating_Blunt>
+                            </value>
+                        </li>
+
+
+                        <!-- ========== SNS Gen2 Armor ========== -->
+
+                        <li Class="PatchOperationAdd">
+                            <xpath>Defs/ThingDef[@Name = "ApparelCosmicPowerArmorBase"]/statBases</xpath>
+                            <value>
+                                <Bulk>1.2</Bulk>
+                                <WornBulk>2</WornBulk>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[@Name = "ApparelCosmicPowerArmorBase"]/statBases/ArmorRating_Sharp</xpath>
+                            <value>
+                                <ArmorRating_Sharp>120</ArmorRating_Sharp>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[@Name = "ApparelCosmicPowerArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+                            <value>
+                                <ArmorRating_Blunt>150</ArmorRating_Blunt>
+                            </value>
+                        </li>
+
+                        <!-- ========== SNS Gen3 Helmet ========== -->
+
+                        <li Class="PatchOperationAdd">
+                            <xpath>Defs/ThingDef[@Name = "ApparelStableMatterPowerArmorHelmetBase"]/statBases</xpath>
+                            <value>
+                                <Bulk>0.45</Bulk>
+                                <WornBulk>0.75</WornBulk>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[@Name = "ApparelStableMatterPowerArmorHelmetBase"]/statBases/ArmorRating_Sharp</xpath>
+                            <value>
+                                <ArmorRating_Sharp>360</ArmorRating_Sharp>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[@Name = "ApparelStableMatterPowerArmorHelmetBase"]/statBases/ArmorRating_Blunt</xpath>
+                            <value>
+                                <ArmorRating_Blunt>360</ArmorRating_Blunt>
+                            </value>
+                        </li>
+
+
+                        <!-- ========== SNS Gen3 Armor ========== -->
+
+                        <li Class="PatchOperationAdd">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_StableMatterPowerArmor"]/statBases</xpath>
+                            <value>
+                                <Bulk>3.6</Bulk>
+                                <WornBulk>6</WornBulk>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_StableMatterPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
+                            <value>
+                                <ArmorRating_Sharp>450</ArmorRating_Sharp>
+                            </value>
+                        </li>
+                        <li Class="PatchOperationReplace">
+                            <xpath>Defs/ThingDef[defName = "SNS_Apparel_StableMatterPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
+                            <value>
+                                <ArmorRating_Blunt>450</ArmorRating_Blunt>
+                            </value>
+                        </li>
+
+                        </operations>
+                    </match>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>
