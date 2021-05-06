@@ -20,7 +20,8 @@
     </li>
   </modDependencies>
   <loadBefore>
-    <li>explodoboy.SNSAOTCreskin</li>
+    <li>explodoboy.SNSAmbitionCosmic.YGTFReskin</li>
+    <li>explodoboy.SNSAmbitionCosmic.JokeReskin</li>
   </loadBefore>
   <loadAfter>
     <li>explodoboy.SNSAmbitionCosmic</li>
